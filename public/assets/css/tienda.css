@@ -1,0 +1,451 @@
+:root {
+    --primario: #3b82f6;
+    --fondo: #f9fafb;
+    --texto: #1f2937;
+    --gris: #6b7280;
+    --borde: #e5e7eb;
+    --exito: #10b981;
+    --error: #ef4444;
+    --sombra: 0 6px 14px rgba(0, 0, 0, 0.04);
+    --radio: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--primario);
+}
+
+/* Formulario de búsqueda */
+form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+form input,
+form select {
+    padding: 10px 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    font-size: 0.95rem;
+    background: white;
+    transition: border-color 0.2s;
+    min-width: 200px;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: var(--primario);
+}
+
+form button {
+    padding: 10px 18px;
+    background: var(--primario);
+    color: white;
+    border: none;
+    border-radius: var(--radio);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.95rem;
+}
+
+form button:hover {
+    background: #2563eb;
+}
+
+/* Grilla de productos */
+.row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+    .row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.producto-card {
+    background: white;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-3px);
+}
+
+.producto-img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: #f3f4f6;
+}
+
+.producto-card h5 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.text-secundario {
+    font-size: 0.85rem;
+    color: var(--gris);
+    margin-bottom: 6px;
+}
+
+.descripcion {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.precio {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--exito);
+    margin-bottom: 6px;
+}
+
+/* Etiquetas de stock */
+.stock-label,
+.stock {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.stock-label.bajo,
+.stock.low {
+    background: #fef2f2;
+    color: var(--error);
+}
+
+.stock-label.ok,
+.stock.ok {
+    background: #ecfdf5;
+    color: var(--exito);
+}
+
+/* Botón de detalle y volver */
+.producto-card a,
+.btn-volver {
+    margin-top: auto;
+    padding: 8px;
+    text-align: center;
+    background: var(--primario);
+    color: white;
+    border-radius: var(--radio);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    font-size: 0.9rem;
+}
+
+.producto-card a:hover,
+.btn-volver:hover {
+    background: #1d4ed8;
+}
+
+/* Mensaje sin productos */
+.alert {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 14px;
+    text-align: center;
+    border-radius: var(--radio);
+    font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+    background: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+/* Página de detalle */
+.producto-detalle {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white;
+    padding: 30px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.producto-detalle .producto-img {
+    width: 100%;
+    max-width: 450px;
+    object-fit: contain;
+}
+
+.producto-detalle .info {
+    flex: 1;
+}
+
+.producto-detalle .info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.producto-detalle .descripcion {
+    font-size: 1rem;
+    color: var(--gris);
+    white-space: pre-line;
+    margin: 15px 0;
+}
+
+.producto-detalle .precio {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--exito);
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .producto-detalle {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .producto-detalle .info {
+        width: 100%;
+    }
+
+    .btn-volver {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+.btn-login {
+    /* position: absolute; */
+    top: 20px;
+    right: 20px;
+    background-color: var(--primario, #3b82f6);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--radio, 10px);
+    cursor: pointer;
+}
+
+/* Estilo del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.mostrar {
+    display: flex;
+}
+.modal-contenido {
+    background: white;
+    padding: 30px 25px;
+    border-radius: var(--radio);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--sombra);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-contenido h2 {
+    color: var(--primario);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.modal-contenido input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    font-size: 0.95rem;
+    background-color: white;
+}
+
+.modal-contenido input:focus {
+    outline: none;
+    border-color: var(--primario);
+}
+
+.modal-contenido button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primario);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-contenido button:hover {
+    background-color: #2563eb;
+}
+
+.modal-contenido p {
+    font-size: 0.9rem;
+    margin-top: 15px;
+    color: var(--texto);
+}
+
+.modal-contenido a {
+    color: var(--primario);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.modal-contenido a:hover {
+    text-decoration: underline;
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    color: var(--gris);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cerrar:hover {
+    color: #000;
+}
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+}
+
+.sugerencias {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    /* border: 1px solid var(--borde); */
+    border-top: none;
+    border-radius: 0 0 var(--radio) var(--radio);
+    box-shadow: var(--sombra);
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sugerencias div {
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: var(--texto);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sugerencias div:hover {
+    background-color: #f3f4f6;
+}
+.usuario-header {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.usuario-logueado {
+    background: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.usuario-logueado a.btn-logout {
+    background: #ef4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.usuario-logueado a.btn-logout:hover {
+    background: #dc2626;
+}
+
