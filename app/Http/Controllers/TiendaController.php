@@ -49,7 +49,15 @@ class TiendaController extends Controller
         abort(404, 'Producto no encontrado.');
     }
 
-    return view('tienda.detalle', compact('producto'));
+    $categorias = \App\Models\Categoria::all();
+
+    return view('tienda.detalle', [
+        'producto' => $producto,
+        'categorias' => $categorias,
+        'buscar' => '',
+        'categoria' => '',
+        'usuario' => Session::get('usuario'),
+    ]);
 }
 public function buscarAjax(Request $request)
 {

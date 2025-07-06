@@ -42,6 +42,25 @@ class AuthController extends Controller
         }
     }
 
+    public function registro(Request $request)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255|unique:usuarios,nombre',
+        'correo' => 'required|email|unique:usuarios,correo',
+        'clave' => 'required|min:6'
+    ]);
+
+    DB::table('usuarios')->insert([
+        'nombre' => $request->nombre,
+        'correo' => $request->correo,
+        'contrasena' => Hash::make($request->clave),
+        'rol' => 'cliente',
+        'creado_en' => now()
+    ]);
+
+    return redirect('/')->with('success', 'Cuenta creada correctamente. Ahora puedes iniciar sesión.');
+}
+
     public function logout()
     {
         session()->forget('usuario');

@@ -7,7 +7,16 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\UsuarioController;
+use App\Http\Controllers\CarritoController;
 
+Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
+Route::get('/carrito/comprar/{id}', [CarritoController::class, 'comprar'])->name('carrito.comprar');
+Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+Route::get('/checkout', function() {
+    return view('carrito.checkout'); // O la vista que prefieras
+})->name('checkout');
 Route::prefix('admin')->group(function() {
     // Categorías
     Route::get('/categorias', [CategoriaController::class, 'index'])->name('admin.categorias.index');
@@ -24,6 +33,7 @@ Route::prefix('admin')->group(function() {
     Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
     Route::get('/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+    Route::get('/productos/ajax', [ProductoController::class, 'cargarMas'])->name('productos.ajax');
 
     // Usuarios
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
@@ -43,3 +53,4 @@ Route::get('/producto/detalle/{id}', [TiendaController::class, 'detalle'])->name
 // Autenticación
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/registro', [App\Http\Controllers\AuthController::class, 'registro'])->name('registro');

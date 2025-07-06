@@ -65,7 +65,7 @@
         <h5 class="text-xl font-semibold mb-4 text-gray-700">
             🆕 Últimos Productos
         </h5>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> 
             @forelse($ultimosProductos as $p)
                 <div class="border rounded-lg p-4 flex flex-col hover:shadow-lg transition duration-300">
                     @if($p->imagen)
